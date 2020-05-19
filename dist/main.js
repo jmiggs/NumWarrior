@@ -86,14 +86,51 @@
 /************************************************************************/
 /******/ ({
 
+/***/ "./src/board.js":
+/*!**********************!*\
+  !*** ./src/board.js ***!
+  \**********************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"default\", function() { return Board; });\n/* harmony import */ var _tiles__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./tiles */ \"./src/tiles.js\");\n\n\n\n// board shape = [\n//   [1,1,1,1,1,1,1,1],\n//   [1,1,1,1,1,1,1,1],\n//   [1,1,1,1,1,1,1,1],\n//   [1,1,1,1,1,1,1,1],\n//   [1,1,1,1,1,1,1,1],\n//   [1,1,1,1,1,1,1,1],\n//   [1,1,1,1,1,1,1,1],\n//   [1,1,1,1,1,1,1,1]\n// ]\n\n\n\nclass Board {\n  constructor(dimensions) {\n    this.dimensions = dimensions;\n    this.cols = 8;\n    this.rows = 8;\n    this.tsize = 52;\n    this.tiles = [];\n  }\n\n\n\n  animate(ctx) {\n    this.drawBackground(ctx)\n    this.drawBoard(ctx);\n    setTimeout( ()=> {\n    this.drawTiles(ctx);\n    }, 50)\n  }\n  \n  drawBoard(ctx) {\n    function createImage(x,y) {\n      var img = new Image;\n      img.src = '../assets/scifitiles-sheet.png';\n      img.onload = function() {\n  \n        ctx.drawImage(img, 191, 31, 33, 33, x,y, 51, 51);\n        // ctx.fillStyle = 'black';\n        // ctx.font = \"20px Georgia\";\n        // ctx.fillText('0', x-20, y-20)\n        // setTimeout( ()=> {\n        //   ctx.fillStyle = 'black';\n        //   ctx.font = \"20px Georgia\";\n        //   ctx.fillText('0', x-20, y-20)\n        // }, 0)\n      }\n    }\n    \n    for (var c = 0, x=0; c < this.cols; c++, x+=this.tsize) {\n      for (var r = 0, y =0; r < this.rows; r++, y+=this.tsize) {\n        console.log(r,c)\n        createImage(x,y);\n      }\n    }\n\n\n\n  }\n\n  drawBackground(ctx) {\n    ctx.fillStyle = \"skyblue\";\n    ctx.fillRect(0, 0, this.dimensions.width, this.dimensions.height);\n  }\n\n  drawTiles(ctx) {\n    for (var c = 0; c < this.cols; c++) {\n      let gridr = []\n      for (var r = 0; r < this.rows; r++) {\n\n        let tile = new _tiles__WEBPACK_IMPORTED_MODULE_0__[\"default\"](this.tsize);\n        gridr.push(tile);\n\n        let xoff = 0 + c*this.tsize + 22\n        let yoff = 0 + r*this.tsize + 31\n\n        tile.drawTile(ctx, xoff, yoff)\n\n        // ctx.fillStyle = 'black';\n        // ctx.font = \"20px Georgia\";\n        // ctx.fillText('0', xoff, yoff)       \n      }\n      this.tiles.push(gridr)\n    }\n\n    console.log(this.tiles)\n  }\n\n\n  getTile(col, row) {\n\n  }\n\n\n\n\n\n}\n\n//# sourceURL=webpack:///./src/board.js?");
+
+/***/ }),
+
+/***/ "./src/game.js":
+/*!*********************!*\
+  !*** ./src/game.js ***!
+  \*********************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"default\", function() { return NumWarrior; });\n/* harmony import */ var _board__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./board */ \"./src/board.js\");\n\n\nclass NumWarrior {\n  constructor(canvas) {\n    this.context = canvas.getContext('2d');\n    this.dimensions = { width: canvas.width, height: canvas.height };\n\n    this.restart();\n  }\n\n  restart() {\n    this.board = new _board__WEBPACK_IMPORTED_MODULE_0__[\"default\"](this.dimensions)\n    this.animate();\n  }\n\n  animate() {\n    this.board.animate(this.context)\n\n  }\n\n\n\n}\n\n//# sourceURL=webpack:///./src/game.js?");
+
+/***/ }),
+
 /***/ "./src/index.js":
 /*!**********************!*\
   !*** ./src/index.js ***!
   \**********************/
-/*! no static exports found */
-/***/ (function(module, exports) {
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-eval("document.addEventListener(\"DOMContentLoaded\", function () {\n\n  console.log('hello')\n});\n\n//# sourceURL=webpack:///./src/index.js?");
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _game__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./game */ \"./src/game.js\");\n\n\n\n\ndocument.addEventListener('DOMContentLoaded', () => {\n  let canvas = document.getElementById('game');\n  new _game__WEBPACK_IMPORTED_MODULE_0__[\"default\"](canvas)\n\n})\n  \n\n\n//# sourceURL=webpack:///./src/index.js?");
+
+/***/ }),
+
+/***/ "./src/tiles.js":
+/*!**********************!*\
+  !*** ./src/tiles.js ***!
+  \**********************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"default\", function() { return Tiles; });\n\nclass Tiles {\n  constructor(tsize) {\n    this.tsize = tsize\n    this.number = Math.floor(Math.random() * 10); \n  }\n\n\n  drawTile(ctx, xoff, yoff) {\n\n    ctx.fillStyle = 'black';\n    ctx.font = \"20px Georgia\";\n    ctx.fillText(this.number, xoff, yoff)   \n  }\n\n  getTileNum() {\n    return this.number\n  }\n\n\n\n\n}\n\n//# sourceURL=webpack:///./src/tiles.js?");
 
 /***/ })
 

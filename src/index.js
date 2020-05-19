@@ -1,4 +1,10 @@
-document.addEventListener("DOMContentLoaded", function () {
+import NumWarrior from './game';
 
-  console.log('hello')
-});
+
+
+document.addEventListener('DOMContentLoaded', () => {
+  let canvas = document.getElementById('game');
+  new NumWarrior(canvas)
+
+})
+  
