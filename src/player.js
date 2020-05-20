@@ -9,6 +9,10 @@ export default class Player {
     this.context = ctx;
     // this.board = board;
     this.validMoves = {};
+    this.frame = 0;
+    this.attacking = false
+
+
     this.dirs = {
       left: [-1,0],
       right: [1, 0],
@@ -16,7 +20,6 @@ export default class Player {
       down: [0, 1]
     };
     
-    this.frame = 1;
 
     this.img = new Image;
     this.img.src = '../assets/kingidle.png';
@@ -36,33 +39,21 @@ export default class Player {
 
   drawFrame(ctx, frame){
     let x = 78;
-    console.log(frame)
-    ctx.drawImage(this.img, x*frame, 0, 65, 55 , this.posx*frame*frame, this.posy, 75, 75);
+
+    ctx.drawImage(this.img, x*frame, 0, 65, 55 , this.posx, this.posy, 75, 75);
   }
 
   animate(ctx, frame) {
 
-    const loop = [1,2,3,4,5,6,7,8,9,10,11];
-  
-    // will create idle animation for the player
-    // var img = new Image;
-    // img.src = '../assets/kingidle.png';
-    // only for initial load, then save as variable for easy access
-    // img.onload = function() {
-    this.drawFrame(ctx, loop[this.frame]);
-
-    this.frame += 1;
-
-    if (this.frame >= loop.length) {
+    const loop = [0,1,2,3,4,5,6,7,8,9,10];
+    
+    if (this.frame > 10) {
       this.frame = 0;
     }
+    this.drawFrame(ctx, loop[this.frame]);
+    // console.log(this.frame)
+    this.frame += 1;
 
-    //   // console.log(this)
-
-    // }
-
-    // ctx.fillStyle= 'red';
-    // ctx.fillRect(0,0,50,50);
   }
 
   // move(e) {

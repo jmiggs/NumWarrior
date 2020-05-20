@@ -8,7 +8,8 @@ export default class NumWarrior {
     this.dimensions = { width: canvas.width, height: canvas.height };
     // this.board = new Board(this.dimensions)
     this.player = new Player(this.board, this.context);
-    this.obj = new Objective(this.board, this.context)
+    this.obj = new Objective(this.board, this.context);
+    this.frameCount = 0
 
     this.run = this.run.bind(this)
     // this.board.animate(this.context)
@@ -18,17 +19,20 @@ export default class NumWarrior {
   }
   
   run(c) {
-    // console.log(this.context);
-    // let c = canvas
-    // const loop = [1,2,3,4,5,6,7,8,9,10,11];
-    // let i = 0;
+    this.frameCount += 1;
 
+    if (this.frameCount < 10) {
+      requestAnimationFrame(this.run);
+      return
+    }
+
+    this.frameCount = 0;
     this.context.clearRect(0,0, this.dimensions.width, this.dimensions.height)
     this.player.animate(this.context);
+    this.registerListeners();
 
 
     // console.log(i)
-    // this.registerListeners();
     // this.init(this.context);
     // console.log('hey')
     requestAnimationFrame(this.run)
