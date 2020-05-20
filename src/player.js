@@ -49,7 +49,13 @@ export default class Player {
     // img.src = '../assets/kingidle.png';
     // only for initial load, then save as variable for easy access
     // img.onload = function() {
-    this.drawFrame(ctx, 1);
+    this.drawFrame(ctx, loop[this.frame]);
+
+    this.frame += 1;
+
+    if (this.frame >= loop.length) {
+      this.frame = 0;
+    }
 
     //   // console.log(this)
 
