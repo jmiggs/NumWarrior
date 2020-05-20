@@ -1,8 +1,8 @@
 
 export default class Tiles {
-  constructor(tsize) {
+  constructor(tsize, num) {
     this.tsize = tsize
-    this.number = Math.floor(Math.random() * 10);
+    this.number = num;
     this.holds = null;
   }
 

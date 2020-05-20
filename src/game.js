@@ -1,5 +1,6 @@
 import Board from './board';
 import Player from './player';
+import Objective from './objective';
 
 export default class NumWarrior {
   constructor(canvas) {
@@ -7,6 +8,7 @@ export default class NumWarrior {
     this.dimensions = { width: canvas.width, height: canvas.height };
     this.board = new Board(this.dimensions)
     this.player = new Player(this.board, this.context);
+    this.obj = new Objective(this.board, this.context)
 
     this.restart = this.restart.bind(this)
     this.board.animate(this.context)
@@ -18,14 +20,19 @@ export default class NumWarrior {
   restart(timestamp) {
     
     this.registerListeners();
-    this.init();
+    this.init(this.context);
     
     console.log('hey')
     // requestAnimationFrame(this.restart)
   }
   
-  init() {
-    this.player.animate(this.context)
+  init(c) {
+
+    // c.clearRect(0,0, 440, 440);
+    // this.board.updateBoard(this.context);
+    this.player.animate(this.context);
+
+
   }
 
   registerListeners() {

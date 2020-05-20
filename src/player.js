@@ -31,7 +31,6 @@ export default class Player {
 
   animate(ctx) {
     if (!this.img) {this.loadimage()}
-
     // will create idle animation for the player
     // var img = new Image;
     // img.src = '../assets/kingidle.png';
@@ -39,9 +38,12 @@ export default class Player {
     // img.onload = function() {
     setInterval( () => {
       ctx.drawImage(this.img, 0, 0, 55, 45, this.posx, this.posy, 65, 65);
-      // console.log(this)
+    //   // console.log(this)
     },)    
     // }
+
+    // ctx.fillStyle= 'red';
+    // ctx.fillRect(0,0,50,50);
 
  
 
@@ -62,12 +64,12 @@ export default class Player {
     }
   }
 
-  drawNewPosition(ctx, e) {
+  // drawNewPosition(ctx, e) {
 
-    setInterval( () =>
-      ctx.drawImage(this.img, 0, 0, 55, 45, this.posx, this.posy, 65, 65)
-    )
-  }
+  //   setInterval( () =>
+  //     ctx.drawImage(this.img, 0, 0, 55, 45, this.posx, this.posy, 65, 65)
+  //   )
+  // }
 
   getValidMoves(dirs) {
     var dirKeys = Object.keys(dirs);
@@ -127,13 +129,9 @@ export default class Player {
         if (valMoves[i] === 'right') {
           this.posx += this.vel;
           return true
-
         }
-
-
       }
     }
-
   }
 
 

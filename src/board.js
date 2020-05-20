@@ -37,6 +37,7 @@ export default class Board {
     setTimeout( ()=> {
     this.drawTiles(ctx);
     }, 50)
+    this.status = true;
   }
   
   drawBoard(ctx) {
@@ -77,7 +78,13 @@ export default class Board {
         let xoff = 12 + c*this.tsize + 22
         let yoff = 12 + r*this.tsize + 31
 
-        let tile = new Tiles(this.tsize);
+        let num = Math.floor(Math.random() * 10);
+
+        if (c > 0 && this.tiles[c-1][r] === num) {
+          num = Math.floor(Math.random() * 10);
+        }
+
+        let tile = new Tiles(this.tsize, num);
         gridr.push(tile);
        
 
@@ -93,13 +100,15 @@ export default class Board {
   }
 
   updateBoard(ctx) {
-    ctx.clearRect(0,0, 440, 440);
+    // ctx.clearRect(0,0, 440, 440);
     this.drawBackground(ctx);
     this.drawBoard(ctx);
     this.updateTiles(ctx);
   }
 
   updateTiles(ctx) {
+    console.log(this.status)
+    if (this.status) {
 
     for (var i = 0; i < this.cols; i++) {
       for (var j = 0; j < this.rows; j++) {
@@ -111,10 +120,11 @@ export default class Board {
         let tile = this.tiles[i][j];
 
        setTimeout( () =>
-        {tile.drawTile(ctx, xoff, yoff)},
+        tile.drawTile(ctx, xoff, yoff)
        )
       }
     }
+  }
   }
 
 
