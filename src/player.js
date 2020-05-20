@@ -5,10 +5,11 @@ export default class Player {
     this.pos = [0,0];
     this.posx = 2;
     this.posy = -5;
-    // this.vel  = board.tsize
+    this.vel  = board.tsize
     this.context = ctx;
-    // this.board = board;
+    this.board = board;
     this.validMoves = {};
+    this.nextMove = null;
     this.frame = 0;
     this.attacking = false
 
@@ -24,7 +25,7 @@ export default class Player {
     this.img = new Image;
     this.img.src = '../assets/kingidle.png';
 
-    this.loadimage = this.loadimage.bind(this)
+    // this.loadimage = this.loadimage.bind(this)
   }
 
   loadimage() {
@@ -56,19 +57,20 @@ export default class Player {
 
   }
 
-  // move(e) {
+  move(e) {
 
-  //   this.getValidMoves(this.dirs);
-  //   // this.isValidMove(this.board, e)
+    this.getValidMoves(this.dirs);
+    // this.isValidMove(this.board, e)
 
-  //   if (this.isValidMove(this.board, e)) {
-  //     // this.posx += this.vel;
-  //     // this.posy += this.vel;
-  //     this.animate(this.context, e);
-  //     this.validMoves = {};
-
-  //   }
-  // }
+    if (this.isValidMove(this.board, e)) {
+      console.log(this.pos, this.validMoves, this.nextMove, e.key)
+      this.updatePos(this.nextMove)
+      // this.posx += this.vel;
+      // this.posy += this.vel;
+      // this.animate(this.context, e);
+      this.validMoves = {};
+    }
+  }
 
   // drawNewPosition(ctx, e) {
 
@@ -77,70 +79,93 @@ export default class Player {
   //   )
   // }
 
-  // getValidMoves(dirs) {
-  //   var dirKeys = Object.keys(dirs);
+  getValidMoves(dirs) {
+    var dirKeys = Object.keys(dirs);
    
 
-  //   for (let i = 0; i < dirKeys.length; i++) {
-  //     let currX = this.pos[0];
-  //     let currY = this.pos[1];
+    for (let i = 0; i < dirKeys.length; i++) {
+      let currX = this.pos[0];
+      let currY = this.pos[1];
 
-  //     let dirX = dirs[dirKeys[i]][0];
-  //     let dirY = dirs[dirKeys[i]][1];
+      let dirX = dirs[dirKeys[i]][0];
+      let dirY = dirs[dirKeys[i]][1];
 
-  //     let newX = currX + dirX;
-  //     let newY = currY + dirY;
-
-
-  //     if (newX >= 0 && newY >= 0) {
-  //       if (newX < 8 && newY < 8) {
-  //         this.validMoves[dirKeys[i]] = [newX, newY]
-  //       }
-  //     }
+      let newX = currX + dirX;
+      let newY = currY + dirY;
 
 
-  //   }
+      if (newX >= 0 && newY >= 0) {
+        if (newX < 8 && newY < 8) {
+          this.validMoves[dirKeys[i]] = [newX, newY]
+        }
+      }
 
-  // }
+    }
+  }
 
-  // isValidMove(board, e) {
-  //   // console.log(this.board.tiles);
-  //   let valMoves = Object.keys(this.validMoves)
+  isValidMove(board, e) {
+    // console.log(this.board.tiles);
+    let valMoves = Object.keys(this.validMoves)
     
-  //   for (let i = 0; i < valMoves.length; i++) {
+    for (let i = 0; i < valMoves.length; i++) {
 
-  //     let x =  this.validMoves[valMoves[i]][0];
-  //     let y =  this.validMoves[valMoves[i]][1];
+      let x =  this.validMoves[valMoves[i]][0];
+      let y =  this.validMoves[valMoves[i]][1];
+
+
+      
+      if (board.tiles[x][y].number === parseInt(e.key, 10)) {
+        this.pos = this.validMoves[valMoves[i]]
+        this.nextMove = valMoves[i];
+        return true
+      }
+    }
+  }
+
+  updatePos(move) {
+    if (move === 'up') {
+    this.posy -= this.vel;
+    return true;
+    }
+    if (move === 'down') {
+    this.posy += this.vel;
+    return true;
+
+    }
+    if (move === 'left') {
+    this.posx -= this.vel;
+    return true;
+    }
+
+    if (move === 'right') {
+    this.posx += this.vel;
+    return true
+    }
+
+  }
 
 
 
-  //     if (board.tiles[x][y].number === parseInt(e.key, 10)) {
+  // this.pos = this.validMoves[valMoves[i]]
 
-  //       this.pos = this.validMoves[valMoves[i]]
+  // if (valMoves[i] === 'up') {
+  //   this.posy -= this.vel;
+  //   return true;
+  // }
+  // if (valMoves[i] === 'down') {
+  //   this.posy += this.vel;
+  //   return true;
 
-  //       if (valMoves[i] === 'up') {
-  //         this.posy -= this.vel;
-  //         return true;
-  //       }
-  //       if (valMoves[i] === 'down') {
-  //         this.posy += this.vel;
-  //         return true;
-
-  //       }
-  //       if (valMoves[i] === 'left') {
-  //         this.posx -= this.vel;
-  //         return true;
-  //       }
-
-  //       if (valMoves[i] === 'right') {
-  //         this.posx += this.vel;
-  //         return true
-  //       }
-  //     }
-  //   }
+  // }
+  // if (valMoves[i] === 'left') {
+  //   this.posx -= this.vel;
+  //   return true;
   // }
 
-
+  // if (valMoves[i] === 'right') {
+  //   this.posx += this.vel;
+  //   return true
+  // }
 
 
 
