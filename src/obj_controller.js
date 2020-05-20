@@ -17,7 +17,7 @@ export default class ObjController {
       let pigX = Math.floor(Math.random() * (8-0) )
       let pigY = Math.floor(Math.random() * (8-0) )
 
-      let pig = new Pig(this.board, pigX, pigY);
+      let pig = new Pig(this.board, pigX, pigY, this);
 
       this.pigs.push(pig);
       this.board.pigs.push(pig);
@@ -41,7 +41,6 @@ export default class ObjController {
     for (let i = 0; i < this.pigs.length; i++) {
       let currPigPos = this.pigs[i].pos;
 
-      console.log(pig.pos, currPigPos)
       if (currPigPos[0] === pig.pos[0] && currPigPos[1] === pig.pos[1]) {
         // console.log('hit')
         this.pigs.splice(i, 1);

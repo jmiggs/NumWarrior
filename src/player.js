@@ -54,7 +54,6 @@ export default class Player {
       this.drawAction(ctx, loop[this.attackFrame] );
       this.attackFrame += 1;
 
-      // console.log(this.attackFrame)
       if (this.attackFrame > 3) {
         this.attackFrame = 0;
         this.attacking = false;
@@ -89,8 +88,10 @@ export default class Player {
       
       if (this.pos[0] === targetPigPos[0] && this.pos[1] === targetPigPos[1] ) {
         let targetPig = this.board.pigs[i];
-        this.objController.removePig(targetPig)
-     
+
+        targetPig.hit = true;
+        targetPig.death = true;
+
       }
     }
   }
