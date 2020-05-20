@@ -44,7 +44,7 @@ export default class ObjController {
       if (currPigPos[0] === pig.pos[0] && currPigPos[1] === pig.pos[1]) {
         // console.log('hit')
         this.pigs.splice(i, 1);
-        if (this.pigs.length === 0) {
+        if (this.pigs.length === 1) {
           this.generatePigs();
         }
         return
