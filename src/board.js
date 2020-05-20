@@ -16,6 +16,7 @@ BG_IMG.src = '../assets/terrain.png';
 
 
 
+
 export default class Board {
   constructor(dimensions) {
     this.dimensions = dimensions;
@@ -24,6 +25,16 @@ export default class Board {
     this.tsize = 52;
     this.tiles = [];
     this.status = false;
+    this.nums = [
+      1,9,3,4,5,9,3,7,
+      3,8,6,2,6,0,4,1,
+      4,1,0,9,8,3,5,0,
+      7,6,8,5,1,4,7,6,
+      8,3,4,3,2,8,9,3,
+      0,5,7,8,9,7,2,5,
+      3,8,6,5,6,0,4,6,
+      4,1,0,9,2,3,5,0,
+    ]
 
     this.generateTiles();
   }
@@ -54,34 +65,47 @@ export default class Board {
   }
 
   generateTiles() {
-    for (var c = 0; c < this.cols; c++) {
+
+    for (var i = 0; i < this.rows; i++) {
       let gridr = []
-      for (var r = 0; r < this.rows; r++) {
+      let nums = [1,2,3,0,5,6,7,0,9]
+      let dnums = [4,7,0,9,1,5,6,8,2]
+      let ddnums = [0,8,7,6,0,7,2,4,9]
+      for (var j = 0; j < this.cols; j++) {
 
-        let xoff = 12 + c*this.tsize + 22
-        let yoff = 12 + r*this.tsize + 31
+        // let xoff = 12 + c*this.tsize + 22
+        // let yoff = 12 + r*this.tsize + 31
 
-        let num = Math.floor(Math.random() * 10);
+        // if (i === 0 || i === 3 || i === 6 ) {
+        //   let num = nums.splice(-1, 1)[0]
+         
+        //   let tile = new Tiles(this.tsize, num);
+        //   gridr.push(tile);
+        // } else {
+        //   if (i === 2 || i === 7 || i === 1) {
+        //     let num = dnums.splice(-1, 1)[0]
+        //     let tile = new Tiles(this.tsize, num);
+        //     gridr.push(tile);
+        //   } else {
+        //     let num = ddnums.splice(1, 1)[0]
+        //     let tile = new Tiles(this.tsize, num);
+        //     gridr.push(tile);
 
-        if (c > 0 && this.tiles[c-1][r] === num) {
-          num = Math.floor(Math.random() * 10);
-        }
+        //   }
+        // }
 
+        let num = this.nums.splice(0,1)[0]
         let tile = new Tiles(this.tsize, num);
         gridr.push(tile);
+
+  
+
       
       }
       this.tiles.push(gridr)
     }
     this.status = true
   }
-
-  // updateBoard(ctx) {
-  //   // ctx.clearRect(0,0, 440, 440);
-  //   this.drawBackground(ctx);
-  //   this.drawBoard(ctx);
-  //   this.updateTiles(ctx);
-  // }
 
   drawTiles(ctx) {
     // console.log(this.status)
@@ -93,9 +117,7 @@ export default class Board {
         let xoff = 12 + i*this.tsize + 22
         let yoff = 12 + j*this.tsize + 31
     
-
         let tile = this.tiles[i][j];
-
 
         tile.drawTile(ctx, xoff, yoff)
 

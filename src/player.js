@@ -11,6 +11,7 @@ export default class Player {
     this.validMoves = {};
     this.nextMove = null;
     this.frame = 0;
+    this.attackFrame = 0;
     this.attacking = false
 
 
@@ -25,18 +26,12 @@ export default class Player {
     this.img = new Image;
     this.img.src = '../assets/kingidle.png';
 
+    this.aimg = new Image;
+    this.aimg.src = '../assets/attack.png';
+
     // this.loadimage = this.loadimage.bind(this)
   }
 
-  loadimage() {
-    var img = new Image;
-    img.src = '../assets/kingidle.png';
-    img.onload = function() {
-      // this.imgload = true
-    }
-    this.img = img
-
-  }
 
   drawFrame(ctx, frame){
     let x = 78;
@@ -44,9 +39,28 @@ export default class Player {
     ctx.drawImage(this.img, x*frame, 0, 65, 55 , this.posx, this.posy, 75, 75);
   }
 
-  animate(ctx, frame) {
+  drawAction(ctx, frame){
+    let x = 78;
+
+    ctx.drawImage(this.aimg, x*frame, 0, 75, 70, this.posx, this.posy, 75, 75 )
+
+  }
+
+  animate(ctx) {
 
     const loop = [0,1,2,3,4,5,6,7,8,9,10];
+
+    if (this.attacking) {
+      
+      this.drawAction(ctx, loop[this.attackFrame] );
+      this.attackFrame += 1;
+
+      console.log(this.attackFrame)
+      if (this.attackFrame > 3) {
+        this.attackFrame = 0;
+        this.attacking = false;
+      }
+    } else {
     
     if (this.frame > 10) {
       this.frame = 0;
@@ -54,30 +68,27 @@ export default class Player {
     this.drawFrame(ctx, loop[this.frame]);
     // console.log(this.frame)
     this.frame += 1;
-
+  }
   }
 
   move(e) {
 
     this.getValidMoves(this.dirs);
-    // this.isValidMove(this.board, e)
 
     if (this.isValidMove(this.board, e)) {
       console.log(this.pos, this.validMoves, this.nextMove, e.key)
+
       this.updatePos(this.nextMove)
-      // this.posx += this.vel;
-      // this.posy += this.vel;
-      // this.animate(this.context, e);
       this.validMoves = {};
     }
   }
 
-  // drawNewPosition(ctx, e) {
+  attack(ctx) {
 
-  //   setInterval( () =>
-  //     ctx.drawImage(this.img, 0, 0, 55, 45, this.posx, this.posy, 65, 65)
-  //   )
-  // }
+
+    this.attacking = false;
+  }
+ 
 
   getValidMoves(dirs) {
     var dirKeys = Object.keys(dirs);
@@ -143,32 +154,5 @@ export default class Player {
     }
 
   }
-
-
-
-  // this.pos = this.validMoves[valMoves[i]]
-
-  // if (valMoves[i] === 'up') {
-  //   this.posy -= this.vel;
-  //   return true;
-  // }
-  // if (valMoves[i] === 'down') {
-  //   this.posy += this.vel;
-  //   return true;
-
-  // }
-  // if (valMoves[i] === 'left') {
-  //   this.posx -= this.vel;
-  //   return true;
-  // }
-
-  // if (valMoves[i] === 'right') {
-  //   this.posx += this.vel;
-  //   return true
-  // }
-
-
-
-
 
 }

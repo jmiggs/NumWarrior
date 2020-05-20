@@ -22,7 +22,7 @@ export default class NumWarrior {
   run(c) {
     this.frameCount += 1;
 
-    if (this.frameCount < 12) {
+    if (this.frameCount < 2) {
       requestAnimationFrame(this.run);
       return
     }
@@ -44,7 +44,11 @@ export default class NumWarrior {
   }
 
   handleKeyDown(e) {
-    // console.log(e)
+
+    if (e.key === 'Enter') {
+      this.player.attacking = true;
+    }
+    console.log(this.player.attacking)
     this.player.move(e);
 
 
