@@ -1,5 +1,8 @@
 import Tiles from './tiles';
 
+const BG_IMG = new Image();
+BG_IMG.src = '../assets/terrain.png'
+
 
 // board shape = [
 //   [1,1,1,1,1,1,1,1],
@@ -21,6 +24,7 @@ export default class Board {
     this.rows = 8;
     this.tsize = 52;
     this.tiles = [];
+    this.status = false;
   }
 
   loadImage() {
@@ -37,16 +41,13 @@ export default class Board {
     setTimeout( ()=> {
     this.drawTiles(ctx);
     }, 50)
-    this.status = true;
+    // this.status = true;
   }
   
   drawBoard(ctx) {
     function createImage(x,y) {
-      var img = new Image;
-      img.src = '../assets/terrain.png';
-      img.onload = function() {
-        
-        ctx.drawImage(img, 320, 224, 62, 62, x,y, 51, 51);
+  
+        ctx.drawImage(BG_IMG, 320, 224, 62, 62, x,y, 51, 51);
         // ctx.fillStyle = 'black';
         // ctx.font = "20px Georgia";
         // ctx.fillText('0', x-20, y-20)
@@ -55,12 +56,11 @@ export default class Board {
         //   ctx.font = "20px Georgia";
         //   ctx.fillText('0', x-20, y-20)
         // }, 0)
-      }
       // this.img = img;
     }
     for (var c = 0, x=12; c < this.cols; c++, x+=this.tsize) {
       for (var r = 0, y=12; r < this.rows; r++, y+=this.tsize) {
-        createImage(x,y);
+        ctx.drawImage(BG_IMG, 320, 224, 62, 62, x,y, 51, 51);
       }
     }
   }
@@ -71,6 +71,9 @@ export default class Board {
   }
 
   drawTiles(ctx) {
+
+    console.log(this.status)
+    if (!this.status) {
     for (var c = 0; c < this.cols; c++) {
       let gridr = []
       for (var r = 0; r < this.rows; r++) {
@@ -97,13 +100,15 @@ export default class Board {
       }
       this.tiles.push(gridr)
     }
+    this.status = true;
+  }
   }
 
   updateBoard(ctx) {
     // ctx.clearRect(0,0, 440, 440);
     this.drawBackground(ctx);
     this.drawBoard(ctx);
-    this.updateTiles(ctx);
+    // this.updateTiles(ctx);
   }
 
   updateTiles(ctx) {

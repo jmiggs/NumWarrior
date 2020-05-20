@@ -11,8 +11,7 @@ export default class NumWarrior {
     this.obj = new Objective(this.board, this.context)
 
     this.restart = this.restart.bind(this)
-    this.board.animate(this.context)
-
+    
     this.restart();
     
   }
@@ -22,14 +21,15 @@ export default class NumWarrior {
     this.registerListeners();
     this.init(this.context);
     
-    console.log('hey')
-    // requestAnimationFrame(this.restart)
+    // console.log('hey')
+    requestAnimationFrame(this.restart)
   }
   
   init(c) {
-
+    
     // c.clearRect(0,0, 440, 440);
     // this.board.updateBoard(this.context);
+    this.board.animate(this.context)
     this.player.animate(this.context);
 
 
