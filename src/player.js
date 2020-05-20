@@ -21,8 +21,8 @@ export default class Player {
       up: [0,-1],
       down: [0, 1]
     };
+  
     
-
     this.img = new Image;
     this.img.src = '../assets/kingidle.png';
 

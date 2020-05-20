@@ -14,9 +14,6 @@ BG_IMG.src = '../assets/terrain.png';
 //   [1,1,1,1,1,1,1,1]
 // ]
 
-
-
-
 export default class Board {
   constructor(dimensions) {
     this.dimensions = dimensions;
@@ -32,7 +29,7 @@ export default class Board {
       7,6,8,5,1,4,7,6,
       8,9,4,3,2,8,9,3,
       0,5,7,8,9,7,2,5,
-      3,8,6,5,6,0,4,6,
+      3,8,6,1,4,0,4,6,
       4,1,0,9,2,3,5,0,
     ]
 
@@ -60,7 +57,7 @@ export default class Board {
   }
 
   drawBackground(ctx) {
-    ctx.fillStyle = "black";
+    ctx.fillStyle = `rgb(100, 58, 17)`;
     ctx.fillRect(0, 0, this.dimensions.width, this.dimensions.height);
   }
 
@@ -68,9 +65,6 @@ export default class Board {
 
     for (var i = 0; i < this.rows; i++) {
       let gridr = []
-      let nums = [1,2,3,0,5,6,7,0,9]
-      let dnums = [4,7,0,9,1,5,6,8,2]
-      let ddnums = [0,8,7,6,0,7,2,4,9]
       for (var j = 0; j < this.cols; j++) {
 
         // let xoff = 12 + c*this.tsize + 22
@@ -97,11 +91,8 @@ export default class Board {
         let num = this.nums.splice(0,1)[0]
         let tile = new Tiles(this.tsize, num);
         gridr.push(tile);
-
-  
-
-      
       }
+
       this.tiles.push(gridr)
     }
     this.status = true

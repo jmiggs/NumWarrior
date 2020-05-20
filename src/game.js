@@ -30,8 +30,8 @@ export default class NumWarrior {
     this.frameCount = 0;
     this.context.clearRect(0,0, this.dimensions.width, this.dimensions.height)
     this.board.animate(this.context)
-
     this.player.animate(this.context);
+    this.obj.animate(this.context)
    
 
     requestAnimationFrame(this.run)
