@@ -22,6 +22,7 @@ export default class Board {
     this.tsize = 52;
     this.tiles = [];
     this.status = false;
+    this.pigs = [];
     this.nums = [
       1,9,3,4,5,9,3,7,
       3,8,6,2,6,0,4,1,
@@ -31,7 +32,7 @@ export default class Board {
       0,5,7,8,9,7,2,5,
       3,8,6,1,4,0,4,6,
       4,1,0,9,2,3,5,0,
-    ]
+    ];
 
     this.generateTiles();
   }
