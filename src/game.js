@@ -71,7 +71,7 @@ export default class NumWarrior {
         
         this.minute = `0`
 
-        this.seconds = `5`;
+        this.seconds = `59`;
       } else {
 
         if (this.seconds <= `10`) {
@@ -92,23 +92,15 @@ export default class NumWarrior {
   }
 
   drawGameOver() {
-    this.frameCount += 1;
 
-    if (this.frameCount < 2) {
-      requestAnimationFrame(this.drawGameOver);
-      return
+    if (this.status === 'done') {
+      this.drawUI();
+      this.context.clearRect(0,0, this.dimensions.width, this.dimensions.height);
+      this.board.drawBackground(this.context)
+      this.board.drawBoard(this.context);
+
+      // this.board.animate(this.context);
     }
-
-    this.drawUI();
-    this.context.clearRect(0,0, this.dimensions.width, this.dimensions.height);
-    this.board.drawBackground(this.context)
-    this.board.drawBoard(this.context);
-    // this.board.animate(this.context);
-
-    // requestAnimationFrame(this.drawGameOver);
-
-
-
   }
 
   gameOver() {
