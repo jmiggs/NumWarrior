@@ -17,7 +17,4 @@ export default class Tiles {
     return this.number
   }
 
-  // 
-
-
 }

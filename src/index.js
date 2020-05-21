@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       if (game.status === 'done') {
-        // let canvas = document.getElementById('game');
+
         document.getElementById('enter').style.display = 'none';
         console.log('hit')
         game = new NumWarrior(canvas);
@@ -25,9 +25,6 @@ document.addEventListener('DOMContentLoaded', () => {
         game.run();
         game.setTimer();
       }
-
-
-
     }
 
   })

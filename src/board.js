@@ -37,19 +37,13 @@ export default class Board {
     this.generateTiles();
   }
 
- 
-
   animate(ctx) {
     this.drawBackground(ctx)
     this.drawBoard(ctx);
-
     this.drawTiles(ctx);
-
-    // this.status = true;
   }
   
   drawBoard(ctx) {
-
     for (var c = 0, x=5; c < this.cols; c++, x+=this.tsize) {
       for (var r = 0, y=5; r < this.rows; r++, y+=this.tsize) {
         ctx.drawImage(BG_IMG, 320, 224, 62, 62, x,y, this.tsize-1, this.tsize-1);
@@ -63,7 +57,6 @@ export default class Board {
   }
 
   generateTiles() {
-
     for (var i = 0; i < this.rows; i++) {
       let gridr = []
       for (var j = 0; j < this.cols; j++) {
@@ -100,7 +93,7 @@ export default class Board {
   }
 
   drawTiles(ctx) {
-    // console.log(this.status)
+
     if (this.status) {
 
     for (var i = 0; i < this.cols; i++) {

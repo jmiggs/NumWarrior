@@ -56,7 +56,6 @@ export default class Pigs {
     const loop = [0,1,2,3,4,5,6,7,8,9,10];
     const hitLoop = [0,1,0,1,0];
 
-
     if (this.death) {
       if (this.hit) {
 
@@ -88,12 +87,5 @@ export default class Pigs {
       this.frame += 1;
     }
   }
-
-  pigDeath() {
-
-  }
-
-
-
 
 }

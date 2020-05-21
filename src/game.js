@@ -21,9 +21,6 @@ export default class NumWarrior {
 
     this.run = this.run.bind(this);
     this.drawGameOver = this.drawGameOver.bind(this);
-    // this.board.animate(this.context)
-    
-    // this.run();
     
   }
   
@@ -98,8 +95,6 @@ export default class NumWarrior {
       this.context.clearRect(0,0, this.dimensions.width, this.dimensions.height);
       this.board.drawBackground(this.context)
       this.board.drawBoard(this.context);
-
-      // this.board.animate(this.context);
     }
   }
 
@@ -110,7 +105,6 @@ export default class NumWarrior {
     
     clearInterval(this.timer);
     this.status = 'done';
-    // this.drawUI();
     this.drawGameOver();
     document.getElementById('enter').style.display = 'block';
 
@@ -127,7 +121,5 @@ export default class NumWarrior {
     let newScore = parseInt(this.score, 10) + 100;
     this.score = newScore.toString();
   }
-
-
 
 }

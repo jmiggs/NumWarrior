@@ -8,7 +8,6 @@ export default class ObjController {
     this.maxPigs = 4;
     this.status = false;
 
-
     this.generatePigs();
   }
 
@@ -23,7 +22,6 @@ export default class ObjController {
       this.board.pigs.push(pig);
     }
     this.status = true;
-    // console.log(this.pigs);
   }
 
   animatePigs(ctx) {

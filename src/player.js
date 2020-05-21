@@ -17,14 +17,12 @@ export default class Player {
     this.attacking = false
     this.size = 85;
 
-
     this.dirs = {
       left: [-1,0],
       right: [1, 0],
       up: [0,-1],
       down: [0, 1]
     };
-  
     
     this.img = new Image;
     this.img.src = '../assets/kingidle.png';
@@ -32,7 +30,6 @@ export default class Player {
     this.aimg = new Image;
     this.aimg.src = '../assets/attack.png';
 
-    // this.loadimage = this.loadimage.bind(this)
   }
 
 
@@ -66,7 +63,6 @@ export default class Player {
       this.frame = 0;
     }
     this.drawFrame(ctx, loop[this.frame]);
-    // console.log(this.frame)
     this.frame += 1;
   }
   }
@@ -93,8 +89,6 @@ export default class Player {
         targetPig[0].death = true;
       
         this.game.addScore();
-
-
       }
     }
   }
@@ -123,7 +117,6 @@ export default class Player {
   }
 
   isValidMove(board, e) {
-    // console.log(this.board.tiles);
     let valMoves = Object.keys(this.validMoves)
     
     for (let i = 0; i < valMoves.length; i++) {
@@ -141,22 +134,22 @@ export default class Player {
 
   updatePos(move) {
     if (move === 'up') {
-    this.posy -= this.vel;
-    return true;
+      this.posy -= this.vel;
+      return true;
     }
     if (move === 'down') {
-    this.posy += this.vel;
-    return true;
+      this.posy += this.vel;
+      return true;
 
     }
     if (move === 'left') {
-    this.posx -= this.vel;
-    return true;
+      this.posx -= this.vel;
+      return true;
     }
 
     if (move === 'right') {
-    this.posx += this.vel;
-    return true;
+      this.posx += this.vel;
+      return true;
     }
 
   }
