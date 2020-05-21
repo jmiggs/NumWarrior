@@ -19,7 +19,7 @@ export default class Board {
     this.dimensions = dimensions;
     this.cols = 8;
     this.rows = 8;
-    this.tsize = 52;
+    this.tsize = 55;
     this.tiles = [];
     this.status = false;
     this.pigs = [];
@@ -50,9 +50,9 @@ export default class Board {
   
   drawBoard(ctx) {
 
-    for (var c = 0, x=12; c < this.cols; c++, x+=this.tsize) {
-      for (var r = 0, y=12; r < this.rows; r++, y+=this.tsize) {
-        ctx.drawImage(BG_IMG, 320, 224, 62, 62, x,y, 51, 51);
+    for (var c = 0, x=5; c < this.cols; c++, x+=this.tsize) {
+      for (var r = 0, y=5; r < this.rows; r++, y+=this.tsize) {
+        ctx.drawImage(BG_IMG, 320, 224, 62, 62, x,y, this.tsize-1, this.tsize-1);
       }
     }
   }
@@ -106,8 +106,8 @@ export default class Board {
     for (var i = 0; i < this.cols; i++) {
       for (var j = 0; j < this.rows; j++) {
         
-        let xoff = 12 + i*this.tsize + 22
-        let yoff = 12 + j*this.tsize + 31
+        let xoff = 5 + i*this.tsize + 25
+        let yoff = 5 + j*this.tsize + 35
     
         let tile = this.tiles[i][j];
 

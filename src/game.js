@@ -13,25 +13,26 @@ export default class NumWarrior {
 
     this.run = this.run.bind(this);
     // this.board.animate(this.context)
-
-    this.run();
-    this.registerListeners();
+    
+    // this.run();
     
   }
   
   run(c) {
     this.frameCount += 1;
-
+    
     if (this.frameCount < 2) {
       requestAnimationFrame(this.run);
       return
     }
-
+    
     this.frameCount = 0;
     this.context.clearRect(0,0, this.dimensions.width, this.dimensions.height);
     this.board.animate(this.context);
     this.objController.animatePigs(this.context);
     this.player.animate(this.context);
+    
+    this.registerListeners();
   
     requestAnimationFrame(this.run);
   }

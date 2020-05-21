@@ -4,14 +4,15 @@ export default class Pigs {
   constructor(board, gridX, gridY, controller) {
     // this.board = board;
     // this.ctx = ctx;
-    this.posOffX = 28;
-    this.posOffY = -10;
+    this.posOffX = 20;
+    this.posOffY = -20;
     this.gridPosX = gridX;
     this.gridPosY = gridY;
     this.pos = [gridX, gridY]
     this.frame = 0;
     this.scale = board.tsize;
     this.objController = controller;
+    this.size = 55;
   
     this.hit = false;
     this.hitFrame = 0;
@@ -25,7 +26,7 @@ export default class Pigs {
 
     this.deathImg = new Image;
     this.deathImg.src = '../assets/pigdeath.png';
-    
+
   }
 
   drawFrame(ctx, frame){
@@ -33,7 +34,7 @@ export default class Pigs {
     let scaleX = this.scale*this.gridPosX;
     let scaleY = this.scale*this.gridPosY;
 
-    ctx.drawImage(this.img, x*frame, 0, 34, 28 , (this.posOffX+scaleX), (this.posOffY+scaleY), 45, 45);
+    ctx.drawImage(this.img, x*frame, 0, 34, 28 , (this.posOffX+scaleX), (this.posOffY+scaleY), this.size, this.size);
   }
 
   drawDeath(ctx, frame){
@@ -41,7 +42,7 @@ export default class Pigs {
     let scaleX = this.scale*this.gridPosX;
     let scaleY = this.scale*this.gridPosY;
 
-    ctx.drawImage(this.deathImg, x*frame, 0, 34, 28, (this.posOffX+scaleX), (this.posOffY+scaleY), 45, 45 )
+    ctx.drawImage(this.deathImg, x*frame, 0, 34, 28, (this.posOffX+scaleX), (this.posOffY+scaleY), this.size, this.size)
   }
   drawHit(ctx, frame){
     let x = 34;

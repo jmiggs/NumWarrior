@@ -3,8 +3,8 @@ import ObjController from './obj_controller';
 export default class Player {
   constructor(board, ctx, objCont) {
     this.pos = [0,0];
-    this.posx = 2;
-    this.posy = -5;
+    this.posx = -5;
+    this.posy = -12;
     this.vel  = board.tsize
     this.board = board;
     this.objController = objCont;
@@ -14,6 +14,7 @@ export default class Player {
     this.frame = 0;
     this.attackFrame = 0;
     this.attacking = false
+    this.size = 85;
 
 
     this.dirs = {
@@ -37,13 +38,13 @@ export default class Player {
   drawFrame(ctx, frame){
     let x = 78;
 
-    ctx.drawImage(this.img, x*frame, 0, 65, 55 , this.posx, this.posy, 75, 75);
+    ctx.drawImage(this.img, x*frame, 0, 65, 55 , this.posx, this.posy, this.size, this.size);
   }
 
   drawAction(ctx, frame){
     let x = 78;
 
-    ctx.drawImage(this.aimg, x*frame, 0, 75, 70, this.posx, this.posy, 75, 75 )
+    ctx.drawImage(this.aimg, x*frame, 0, 75, 70, this.posx, this.posy, this.size, this.size)
   }
 
   animate(ctx) {
