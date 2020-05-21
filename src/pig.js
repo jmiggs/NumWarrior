@@ -13,7 +13,6 @@ export default class Pigs {
     this.scale = board.tsize;
     this.objController = controller;
   
-
     this.hit = false;
     this.hitFrame = 0;
     this.death = false;
@@ -26,6 +25,7 @@ export default class Pigs {
 
     this.deathImg = new Image;
     this.deathImg.src = '../assets/pigdeath.png';
+    
   }
 
   drawFrame(ctx, frame){
