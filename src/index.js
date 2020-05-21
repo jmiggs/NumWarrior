@@ -7,8 +7,27 @@ document.addEventListener('DOMContentLoaded', () => {
   
   document.addEventListener('keydown', (e) => {
     if (e.code === 'Space') {
-      document.getElementById('enter').style.display = 'none';
-      game.run();
+
+      if (game.status === 'none') {
+        document.getElementById('enter').style.display = 'none';
+        game.status = 'running';
+        game.run();
+        game.setTimer();
+      }
+
+      if (game.status === 'done') {
+        // let canvas = document.getElementById('game');
+        document.getElementById('enter').style.display = 'none';
+        console.log('hit')
+        game = new NumWarrior(canvas);
+
+        game.status = 'running';
+        game.run();
+        game.setTimer();
+      }
+
+
+
     }
 
   })

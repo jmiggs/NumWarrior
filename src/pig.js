@@ -56,6 +56,7 @@ export default class Pigs {
     const loop = [0,1,2,3,4,5,6,7,8,9,10];
     const hitLoop = [0,1,0,1,0];
 
+
     if (this.death) {
       if (this.hit) {
 
@@ -71,6 +72,7 @@ export default class Pigs {
         this.drawDeath(ctx, loop[this.deathFrame] );
         this.deathFrame += 1;
         if (this.deathFrame > 5) {
+          console.log('hit')
           this.deathFrame = 0;
           this.objController.removePig(this);
           this.death = false;

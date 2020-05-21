@@ -1,13 +1,14 @@
 import ObjController from './obj_controller';
 
 export default class Player {
-  constructor(board, ctx, objCont) {
+  constructor(board, ctx, objCont, game) {
     this.pos = [0,0];
     this.posx = -5;
     this.posy = -12;
     this.vel  = board.tsize
     this.board = board;
     this.objController = objCont;
+    this.game = game;
     this.context = ctx;
     this.validMoves = {};
     this.nextMove = null;
@@ -81,17 +82,18 @@ export default class Player {
   }
 
   attack(ctx) {
-    // console.log(this.board.pigs)
-    // console.log(this.pos)
 
     for (let i = 0; i < this.board.pigs.length; i++) {
       let targetPigPos = this.board.pigs[i].pos;
       
       if (this.pos[0] === targetPigPos[0] && this.pos[1] === targetPigPos[1] ) {
-        let targetPig = this.board.pigs[i];
+        let targetPig = this.board.pigs.splice(i, 1);
+        
+        targetPig[0].hit = true;
+        targetPig[0].death = true;
+      
+        this.game.addScore();
 
-        targetPig.hit = true;
-        targetPig.death = true;
 
       }
     }
