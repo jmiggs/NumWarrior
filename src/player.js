@@ -25,10 +25,10 @@ export default class Player {
     };
     
     this.img = new Image;
-    this.img.src = '../assets/kingidle.png';
+    this.img.src = './assets/kingidle.png';
 
     this.aimg = new Image;
-    this.aimg.src = '../assets/attack.png';
+    this.aimg.src = './assets/attack.png';
 
   }
 

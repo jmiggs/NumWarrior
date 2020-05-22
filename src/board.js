@@ -1,6 +1,6 @@
 import Tiles from './tiles';
 const BG_IMG = new Image();
-BG_IMG.src = '../assets/terrain.png';
+BG_IMG.src = './assets/terrain.png';
 
 
 // board shape = [
