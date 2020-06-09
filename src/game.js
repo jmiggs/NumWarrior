@@ -128,6 +128,7 @@ export default class NumWarrior {
     document.getElementById('enter').style.display = 'block';
 
 
+
   }
   
   drawUI() {
@@ -143,9 +144,10 @@ export default class NumWarrior {
     let currHiscore = document.getElementById('hiscore-num').innerHTML;
 
     if (newScore > currHiscore) {
+      localStorage.setItem(SAVE_KEY_SCORE, newScore);
       document.getElementById('hiscore-num').innerHTML = newScore;
-      localStorage.setItem(SAVE_KEY_SCORE, 0);
     }
+
   }
 
 }

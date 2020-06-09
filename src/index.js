@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let game = new NumWarrior(canvas);
 
   let hiscore = localStorage.getItem(SAVE_KEY_SCORE);
+  
   document.getElementById('hiscore-num').innerHTML = hiscore? hiscore: 0;
   
   document.addEventListener('keydown', (e) => {
