@@ -4,7 +4,7 @@ Do you feel like typing out numbers is troublesome or not as easy as typing word
 
 ![alt text](https://i.imgur.com/TiOxLt7.png)
 
-NumWarriors is a game where users can practice their speed and efficiency with a 10key numpad, in a fun way! The game aims to simulate numeric data entry by having to press numbers to reach an objective and pressing enter to capture it. If you keep playing the game, your fingers will remember where exactly on your keyboard the number you want to type is.
+NumWarrior is a game where users can practice their speed and efficiency with a 10key numpad, in a fun way! The game aims to simulate numeric data entry by having to press numbers to reach an objective and pressing enter to capture it. If you keep playing the game, your fingers will remember where exactly on your keyboard the number you want to type is.
 
 ![alt text](https://i.imgur.com/zSNhrZ1.gif)
 
@@ -94,11 +94,11 @@ The Player's animations are handled by its ``animate()`` method, along with ``dr
 
 These two functions together use this sprite sheet image:
 
-
+![alt text](https://i.imgur.com/f6ptvbH.png)
 
 Each time the Player's ``animate()`` function is called by the ``run()`` function from the Game Class, the next image on the sprite sheet is drawn, and once the functions reach the end of the sprite sheet, the first image is drawn, creating an animation loop for the player.
 
-the ``animate()`` function also checks if the Player is currently attacking, and will use a different sprite sheet that will draw the attack animation.
+The ``animate()`` function also checks if the Player is currently attacking, and will use a different sprite sheet that will draw the attack animation.
 
 Check out these animation loops~
 
@@ -149,29 +149,14 @@ As an Objective is created randomly on the board, the Objective Controller keeps
 As each objective is captured, the objective's position is removed from the Objective Controllers state (and also the Board's), thus shrinking the amount of objectives its keeping track of. Once the amount of pigs reaches an amount of 1, ``generatePigs()`` is called to spawn even more pigs!!
 ![alt text](https://i.imgur.com/8z3NeJq.gif)
 
-## Design and MVPs
 
-### Design
-
-The design of this app is fairly simple. The game view will be displayed in the center of the window, and will house the board,
-of which will fill out 100% of the game view. From there, current score will be displayed on the top right corner, and next to it is the remianing time.
-The player will start on the top left corner of the tile and will be able to navigate the board to randomly generated objectives!
-
-insert game view
-
-### MVPs
+## MVPs
 
 In NumWarrior, users will be able to:
 
 1. navigate the board tiles by typing the number associated with that tile
 2. capture as many objectives generated on the board randomly in under 1:00.
 3. see their high scores so users can be motvated to increase their num typing powers!
-
-insert intro
-
-
-In the snippet above, the player consecutively presses the numbers to navigate to a tile with an evil alien pig. Once there, 
-the player can slay the pig by pressing ENTER, and earn points!
 
 Through this, numerical data entry is simulated, and players can keep track of how many points they earn.
 
@@ -193,10 +178,6 @@ Through this, numerical data entry is simulated, and players can keep track of h
 ### Day 4:
       1. Finish up Game View: Write the logic needed to run the game: implement time, high score display, and gameover logic.
       
- Additional Features:
- 
-  Hardmode: there will be an additional class that players must avoid or they lose score/die!!
-  Skin:  players will be able to choose from a variety of skins.
   
   
  
